@@ -1,4 +1,8 @@
 package com.esgproject.daaang_univ.service;
 
-public interface DstaServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class DstaServiceImpl {
+
 }
