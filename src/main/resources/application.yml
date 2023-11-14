@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/univ?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
+    username: user
+    password: 12341234
+
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+
+thymeleaf:
+  cache: false
+  enabled: true
+  prefix: classpath:/templates/html/
+  suffix: .html
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration: map-underscore-to-camel-case:true
+
+
