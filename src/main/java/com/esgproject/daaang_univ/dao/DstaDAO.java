@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 @Mapper
 public interface DstaDAO {
-    List<DstaDTO> dstaList(Integer dstar_no);
+    List<DstaDTO> dstaList(Integer dstarNo);
 }

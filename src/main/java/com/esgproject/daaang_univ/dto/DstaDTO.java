@@ -1,25 +1,25 @@
 package com.esgproject.daaang_univ.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class DstaDTO {
-    private Integer dstar_no;
+    private Integer dstarNo;
     private String userid;
-    private String dstar_text;
-    private String dstar_thumbnail;
-    private String dstar_img1;
-    private String dstar_img2;
-    private String dstar_img3;
-    private String dstar_img4;
-    private java.sql.Timestamp dstar_date;
-    private int dstar_hit;
-    private int dstar_like;
-    private java.sql.Timestamp dstar_edit_date;
+    private String dstarText;
+    private String dstarThumbnail;
+    private String dstarImg1;
+    private String dstarImg2;
+    private String dstarImg3;
+    private String dstarImg4;
+    private Timestamp dstarDate;
+    private Timestamp dstarEditDate;
+    private int dstarHit;
+    private int dstarLike;
 }
