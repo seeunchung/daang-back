@@ -1,11 +1,11 @@
 package com.esgproject.daaang_univ;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@EnableWebMvc
 @SpringBootApplication
+@MapperScan(basePackages = "com.esgproject.daaang_univ")
 public class DAaaNgUnivApplication {
 
 	public static void main(String[] args) {
