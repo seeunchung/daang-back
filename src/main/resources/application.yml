@@ -1,9 +1,13 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/univ?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/univ?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: user
     password: 12341234
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
 
   devtools:
     livereload:
@@ -16,9 +20,14 @@ thymeleaf:
   enabled: true
   prefix: classpath:/templates/html/
   suffix: .html
+  encoding: UTF-8
 
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
 
+server:
+  servlet:
+    encoding:
+      force-response: true

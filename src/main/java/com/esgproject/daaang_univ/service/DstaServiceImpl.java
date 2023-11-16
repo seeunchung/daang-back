@@ -16,7 +16,7 @@ public class DstaServiceImpl implements DstaService {
     private final DstaDAO dao;
 
     @Override
-    public List<DstaDTO> dstaList(Integer dstar_no) {
-        return dao.dstaList(dstar_no);
+    public List<DstaDTO> dstaList(Integer dstarNo) {
+        return dao.dstaList(dstarNo);
     }
 }

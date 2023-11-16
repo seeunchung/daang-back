@@ -20,8 +20,8 @@ public class DstaController {
     private final DstaService service;
 
     @GetMapping("/dstaMainPage")
-    public ResponseEntity<List<DstaDTO>> dstaList(@RequestParam(required = false) Integer dstar_no) {
-        List<DstaDTO> dstaList = service.dstaList(dstar_no);
+    public ResponseEntity<List<DstaDTO>> dstaList(@RequestParam(required = false) Integer dstarNo) {
+        List<DstaDTO> dstaList = service.dstaList(dstarNo);
         return new ResponseEntity<>(dstaList, HttpStatus.OK);
     }
 }
