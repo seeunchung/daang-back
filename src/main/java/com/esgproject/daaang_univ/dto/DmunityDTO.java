@@ -20,4 +20,5 @@ public class DmunityDTO {
     private int dmunityHit;
     private int dmunityLike;
     private Timestamp dmunityEditDate;
+    private int dmunityComments;
 }

@@ -6,5 +6,7 @@ import com.esgproject.daaang_univ.dto.DstaDTO;
 import java.util.List;
 
 public interface DmunityService {
-    List<DmunityDTO> dmunityList(Integer dmunityNo);
+    DmunityDTO getDmunityById(Integer dmunityNo);
+    List<DmunityDTO> getAllDmunities();
+    // 필요에 따라 추가적인 메서드를 정의하세요.
 }
