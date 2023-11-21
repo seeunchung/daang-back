@@ -19,9 +19,17 @@ public class DstaController {
 
     private final DstaService service;
 
+// 댕스타 메인 페이지 리스트
     @GetMapping("/dstaMainPage")
     public ResponseEntity<List<DstaDTO>> dstaList(@RequestParam(required = false) Integer dstarNo) {
         List<DstaDTO> dstaList = service.dstaList(dstarNo);
         return new ResponseEntity<>(dstaList, HttpStatus.OK);
     }
+
+//    댕스타 작성 페이지
+//    public dstaWrite(Integer dstaNo , String userid){
+//        return dstaWrite;
+//    }
 }
+
+
