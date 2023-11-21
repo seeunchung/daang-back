@@ -3,5 +3,6 @@
 <configuration>
     <mappers>
         <mapper resource="DstaMapper.xml"/>
+        <mapper resource="DmunityMapper.xml"/>
     </mappers>
 </configuration>
