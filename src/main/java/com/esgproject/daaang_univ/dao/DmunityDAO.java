@@ -8,5 +8,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface DmunityDAO {
-    List<DmunityDTO> dmunityList(Integer dmunityNo);
+    DmunityDTO findById(Integer dmunityNo);
+    List<DmunityDTO> findAll();
+    // 필요에 따라 추가적인 메서드를 정의하세요.
 }

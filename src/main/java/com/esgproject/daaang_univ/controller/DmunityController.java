@@ -14,11 +14,17 @@ import java.util.List;
 @RequestMapping("/dmunity")
 public class DmunityController {
 
-    private final DmunityService service;
-    @CrossOrigin(origins = "*")
-    @GetMapping("/dmunityMainPage")
-    public ResponseEntity<List<DmunityDTO>> dmunityList(@RequestParam(required = false) Integer dmunityNo) {
-        List<DmunityDTO> dmunityList = service.dmunityList(dmunityNo);
-        return new ResponseEntity<>(dmunityList, HttpStatus.OK);
+    private final DmunityService dmunityService;
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/all")
+    public ResponseEntity<List<DmunityDTO>> getAllDmunity() {
+        List<DmunityDTO> allDmunities = dmunityService.getAllDmunities();
+        return new ResponseEntity<>(allDmunities, HttpStatus.OK);
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/{dmunityNo}")
+    public ResponseEntity<DmunityDTO> getDmunityById(@PathVariable Integer dmunityNo) {
+        DmunityDTO dmunity = dmunityService.getDmunityById(dmunityNo);
+        return ResponseEntity.ok(dmunity);
     }
 }
