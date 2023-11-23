@@ -4,5 +4,6 @@
     <mappers>
         <mapper resource="DstaMapper.xml"/>
         <mapper resource="DmunityMapper.xml"/>
+        <mapper resource="DoginfoMapper.xml"/>
     </mappers>
 </configuration>

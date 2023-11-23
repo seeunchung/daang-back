@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.esgproject.daaang_univ.dao.DoginfoDAO">
+
+    <!-- 힉생증 강아지 정보 리스트-->
+    <select id="doginfoList" resultType="com.esgproject.daaang_univ.dto.DoginfoDTO">
+        SELECT * FROM DOGINFO
+    </select>
+
+    <!-- 데이터 수정 쿼리 추가 -->
+    <update id="updateDoginfo" parameterType="com.esgproject.daaang_univ.dto.DoginfoDTO">
+        UPDATE DOGINFO
+        SET
+        DOGINFO_NAME = #{doginfoName},
+        DOGINFO_TYPE = #{doginfoType},
+        DOGINFO_BIRTH = #{doginfoBirth},
+        DOGINFO_MEMO = #{doginfoMemo},
+        DOG_IMG = #{dogImg}
+        WHERE
+        DOGINFO_NO = #{doginfoNo}
+    </update>
+
+</mapper>
