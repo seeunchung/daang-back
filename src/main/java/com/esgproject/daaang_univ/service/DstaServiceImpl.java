@@ -19,4 +19,14 @@ public class DstaServiceImpl implements DstaService {
     public List<DstaDTO> dstaList(Integer dstarNo) {
         return dao.dstaList(dstarNo);
     }
+
+    @Override
+    public void insertDsta(DstaDTO dstaDTO) {
+        dao.insertDsta(dstaDTO);
+    }
+
+    @Override
+    public DstaDTO getDstaByDstarNo(int dstarNo) {
+        return dao.getDstaByDstarNo(dstarNo);
+    }
 }

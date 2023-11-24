@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface DstaService {
     List<DstaDTO> dstaList(Integer dstarNo);
+
+    void insertDsta(DstaDTO dstaDTO);
+
+    DstaDTO getDstaByDstarNo(int dstarNo);
 }

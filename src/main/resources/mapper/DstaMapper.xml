@@ -2,8 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.esgproject.daaang_univ.dao.DstaDAO">
 
-<!--댕스타 메인 리스트-->
+    <!-- 댕스타 메인 리스트 -->
     <select id="dstaList" resultType="com.esgproject.daaang_univ.dto.DstaDTO">
+        <![CDATA[
         SELECT * FROM DSTAR
+        ]]>
     </select>
+
+    <!-- dstarNo로 선택 작업 -->
+    <select id="getDstaByDstarNo" resultType="com.esgproject.daaang_univ.dto.DstaDTO" parameterType="int">
+        <![CDATA[
+        SELECT * FROM DSTAR WHERE dstarNo = #{dstarNo}
+        ]]>
+    </select>
+
+    <!-- 댕스타 삽입 -->
+    <insert id="insertDsta" parameterType="com.esgproject.daaang_univ.dto.DstaDTO">
+        <![CDATA[
+        INSERT INTO DSTAR (
+            userid, dstarText, dstarTag, dstarThumbnail, dstarImg1,
+            dstarImg2, dstarImg3, dstarImg4, dstarDate, dstarEditDate,
+            dstarHit, dstarLike, dstarComment
+        ) VALUES (
+            #{userid}, #{dstarText}, #{dstarTag} ,#{dstarThumbnail}, #{dstarImg1},
+            #{dstarImg2}, #{dstarImg3}, #{dstarImg4}, #{dstarDate}, #{dstarEditDate},
+            #{dstarHit}, #{dstarLike}, #{dstarComment}
+        )
+        ]]>
+    </insert>
+
 </mapper>

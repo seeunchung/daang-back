@@ -9,4 +9,8 @@ import java.util.List;
 @Mapper
 public interface DstaDAO {
     List<DstaDTO> dstaList(Integer dstarNo);
+    // 댕스타 삽입 메서드 추가
+    void insertDsta(DstaDTO dstaDTO);
+    // dstarNo로 선택 작업 메서드 추가
+    DstaDTO getDstaByDstarNo(int dstarNo);
 }

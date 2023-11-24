@@ -13,6 +13,7 @@ public class DstaDTO {
     private Integer dstarNo;
     private String userid;
     private String dstarText;
+    private String dstarTag;
     private String dstarThumbnail;
     private String dstarImg1;
     private String dstarImg2;
@@ -22,4 +23,5 @@ public class DstaDTO {
     private Timestamp dstarEditDate;
     private int dstarHit;
     private int dstarLike;
+    private int dstarComment;
 }

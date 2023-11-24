@@ -5,10 +5,7 @@ import com.esgproject.daaang_univ.service.DstaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,11 +22,19 @@ public class DstaController {
         List<DstaDTO> dstaList = service.dstaList(dstarNo);
         return new ResponseEntity<>(dstaList, HttpStatus.OK);
     }
+    // dstarNo로 선택 작업을 위한 코드 추가
+    @GetMapping("/getDstaByDstarNo/{dstarNo}")
+    public ResponseEntity<DstaDTO> getDstaByDstarNo(@PathVariable int dstarNo) {
+        DstaDTO dstaDTO = service.getDstaByDstarNo(dstarNo);
+        return new ResponseEntity<>(dstaDTO, HttpStatus.OK);
+    }
 
-//    댕스타 작성 페이지
-//    public dstaWrite(Integer dstaNo , String userid){
-//        return dstaWrite;
-//    }
+    // 댕스타 작성 페이지 - 댕스타 삽입을 위한 코드 추가
+    @PostMapping("/dstaWrite")
+    public ResponseEntity<Void> dstaWrite(@RequestBody DstaDTO dstaDTO) {
+        service.insertDsta(dstaDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }
 
 
