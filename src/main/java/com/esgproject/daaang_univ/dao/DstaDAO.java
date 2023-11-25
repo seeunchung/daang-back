@@ -13,4 +13,10 @@ public interface DstaDAO {
     void insertDsta(DstaDTO dstaDTO);
     // dstarNo로 선택 작업 메서드 추가
     DstaDTO getDstaByDstarNo(int dstarNo);
+
+    // 댕스타 수정 메서드 추가
+    void updateDsta(DstaDTO dstaDTO);
+
+    // 댕스타 삭제 메서드
+    void deleteDsta(int dstarNo);
 }

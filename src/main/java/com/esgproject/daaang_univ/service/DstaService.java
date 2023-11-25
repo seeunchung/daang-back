@@ -10,4 +10,8 @@ public interface DstaService {
     void insertDsta(DstaDTO dstaDTO);
 
     DstaDTO getDstaByDstarNo(int dstarNo);
+
+    void updateDsta(DstaDTO dstaDTO);
+
+    void deleteDsta(int dstarNo);
 }

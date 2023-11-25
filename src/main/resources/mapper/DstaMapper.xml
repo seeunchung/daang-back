@@ -31,4 +31,27 @@
         ]]>
     </insert>
 
+    <!-- 댕스타 수정 -->
+    <update id="updateDsta" parameterType="com.esgproject.daaang_univ.dto.DstaDTO">
+        <![CDATA[
+        UPDATE DSTAR SET
+            userid = #{userid},
+            dstarText = #{dstarText},
+            dstarTag = #{dstarTag},
+            dstarThumbnail = #{dstarThumbnail},
+            dstarImg1 = #{dstarImg1},
+            dstarImg2 = #{dstarImg2},
+            dstarImg3 = #{dstarImg3},
+            dstarImg4 = #{dstarImg4}
+        WHERE dstarNo = #{dstarNo}
+        ]]>
+    </update>
+
+    <!-- 댕스타 삭제 -->
+    <delete id="deleteDsta" parameterType="int">
+        <![CDATA[
+    DELETE FROM DSTAR WHERE dstarNo = #{dstarNo}
+    ]]>
+    </delete>
+
 </mapper>

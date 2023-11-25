@@ -35,6 +35,20 @@ public class DstaController {
         service.insertDsta(dstaDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    // 댕스타 수정을 위한 코드 추가
+    @PutMapping("/dstarEdit")
+    public ResponseEntity<Void> updateDsta(@RequestBody DstaDTO dstaDTO) {
+        service.updateDsta(dstaDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    // 댕스타 삭제를 위한 코드 추가
+    @DeleteMapping("/deleteDsta/{dstarNo}")
+    public ResponseEntity<Void> deleteDsta(@PathVariable int dstarNo) {
+        service.deleteDsta(dstarNo);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
 
 

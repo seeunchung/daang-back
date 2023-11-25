@@ -29,4 +29,13 @@ public class DstaServiceImpl implements DstaService {
     public DstaDTO getDstaByDstarNo(int dstarNo) {
         return dao.getDstaByDstarNo(dstarNo);
     }
+
+    @Override
+    public void updateDsta(DstaDTO dstaDTO) {
+        dao.updateDsta(dstaDTO);
+    }
+    @Override
+    public void deleteDsta(int dstarNo) {
+        dao.deleteDsta(dstarNo);
+    }
 }
