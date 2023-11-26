@@ -3,9 +3,37 @@
 <mapper namespace="com.esgproject.daaang_univ.dao.DmunityDAO">
 
     <select id="findById" resultType="com.esgproject.daaang_univ.dto.DmunityDTO">
-        SELECT * FROM DMUNITY WHERE DMUNITY_NO = #{dmunityNo}
+        SELECT * FROM DMUNITY WHERE dmunityNo = #{dmunityNo}
     </select>
     <select id="findAll" resultType="com.esgproject.daaang_univ.dto.DmunityDTO">
         SELECT * FROM DMUNITY
+        ORDER BY dmunityDate DESC
+    </select>
+
+    <insert id="writeDmunity" parameterType="com.esgproject.daaang_univ.dto.DmunityDTO">
+        INSERT INTO dmunity ( userid, dmunityCategory, dmunityTitle, dmunityText, dmunityDate)
+        VALUES ( #{userid}, #{dmunityCategory}, #{dmunityTitle}, #{dmunityText}, now())
+    </insert>
+
+    <update id="editDmunity" parameterType="com.esgproject.daaang_univ.dto.DmunityDTO">
+        UPDATE dmunity
+        SET dmunityCategory = #{dmunityCategory},
+        dmunityTitle = #{dmunityTitle},
+        dmunityText = #{dmunityText},
+        dmunityEditDate = NOW()
+        WHERE dmunityNo = #{dmunityNo}
+    </update>
+
+    <delete id="deleteDmunity" parameterType="com.esgproject.daaang_univ.dto.DmunityDTO">
+        DELETE FROM dmunity WHERE dmunityNo = #{dmunityNo}
+    </delete>
+
+    <select id="getTotalPageCount" resultType="int">
+        SELECT CEIL(COUNT(*) / 10) AS totalPageCount FROM dmunity
+        <where>
+            <if test="category != 0">
+                AND dmunity_category = #{category}
+            </if>
+        </where>
     </select>
 </mapper>

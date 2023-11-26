@@ -14,17 +14,35 @@ import java.util.List;
 @Service
 public class DmunityServiceImpl implements DmunityService {
 
-    private final DmunityDAO dmunityDAO;
+    private final DmunityDAO dao;
 
     @Override
     public DmunityDTO getDmunityById(Integer dmunityNo) {
-        return dmunityDAO.findById(dmunityNo);
+        return dao.findById(dmunityNo);
     }
 
     @Override
     public List<DmunityDTO> getAllDmunities() {
-        return dmunityDAO.findAll();
+        return dao.findAll();
     }
-    // 필요에 따라 추가적인 서비스 메서드를 구현하세요.
+    @Override
+    public void writeDmunity(DmunityDTO dmunityDTO) {
+        dao.writeDmunity(dmunityDTO);
+    }
+    @Override
+    public void editDmunity(Integer dmunityNo, DmunityDTO updatedPost) {
+        DmunityDTO post = dao.findById(dmunityNo);
+        post.setDmunityTitle(updatedPost.getDmunityTitle());
+        post.setDmunityText(updatedPost.getDmunityText());
+        dao.editDmunity(post);
+    }
+    @Override
+    public void deleteDmunity(Integer dmunityNo) {
+        dao.deleteDmunity(dmunityNo);
+    }
+    @Override
+    public Integer getTotalPageCount(Integer category) {
+        return dao.getTotalPageCount(category);
+    }
 }
 
