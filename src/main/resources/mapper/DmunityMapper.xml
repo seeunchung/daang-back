@@ -28,12 +28,5 @@
         DELETE FROM dmunity WHERE dmunityNo = #{dmunityNo}
     </delete>
 
-    <select id="getTotalPageCount" resultType="int">
-        SELECT CEIL(COUNT(*) / 10) AS totalPageCount FROM dmunity
-        <where>
-            <if test="category != 0">
-                AND dmunity_category = #{category}
-            </if>
-        </where>
-    </select>
+
 </mapper>

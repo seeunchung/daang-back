@@ -13,5 +13,4 @@ public interface DmunityDAO {
     void writeDmunity(DmunityDTO dmunityDTO);
     void editDmunity(DmunityDTO dmunityDTO);
     void deleteDmunity(Integer dmunityNo);
-    Integer getTotalPageCount(Integer category);
 }

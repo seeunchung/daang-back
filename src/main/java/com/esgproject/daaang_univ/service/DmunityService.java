@@ -13,5 +13,4 @@ public interface DmunityService {
 
     void deleteDmunity(Integer dmunityNo);
 
-    Integer getTotalPageCount(Integer category);
 }

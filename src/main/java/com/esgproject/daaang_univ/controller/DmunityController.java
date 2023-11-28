@@ -44,8 +44,5 @@ public class DmunityController {
     public void deleteDmunity(@PathVariable Integer dmunityNo) {
         service.deleteDmunity(dmunityNo);
     }
-    @GetMapping("/totalPageCount")
-    public Integer getTotalPageCount(@RequestParam("category") Integer category) {
-        return service.getTotalPageCount(category);
-    }
+
 }

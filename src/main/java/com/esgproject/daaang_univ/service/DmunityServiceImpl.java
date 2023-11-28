@@ -34,15 +34,12 @@ public class DmunityServiceImpl implements DmunityService {
         DmunityDTO post = dao.findById(dmunityNo);
         post.setDmunityTitle(updatedPost.getDmunityTitle());
         post.setDmunityText(updatedPost.getDmunityText());
+        post.setDmunityCategory(updatedPost.getDmunityCategory());
         dao.editDmunity(post);
     }
     @Override
     public void deleteDmunity(Integer dmunityNo) {
         dao.deleteDmunity(dmunityNo);
-    }
-    @Override
-    public Integer getTotalPageCount(Integer category) {
-        return dao.getTotalPageCount(category);
     }
 }
 

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 public class DmunityDTO {
     private Integer dmunityNo;
     private String userid;
-    private Integer dmunityCategory;
+    private int dmunityCategory;
     private String dmunityTitle;
     private String dmunityText;
     private Timestamp dmunityDate;
