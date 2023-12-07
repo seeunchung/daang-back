@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class DstaController {
 
     // 댕스타 작성 페이지 - 댕스타 삽입을 위한 코드 추가
     @PostMapping("/dstaWrite")
-    public ResponseEntity<Void> dstaWrite(@RequestBody DstaDTO dstaDTO) {
-        service.insertDsta(dstaDTO);
+    public ResponseEntity<Void> dstaWrite(@ModelAttribute DstaDTO dstaDTO, @RequestParam("thumbnailFile") MultipartFile thumbnailFile) {
+        service.insertDsta(dstaDTO, thumbnailFile);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
