@@ -4,12 +4,17 @@ import com.esgproject.daaang_univ.dao.DstaDAO;
 import com.esgproject.daaang_univ.dto.DstaDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 @Service
@@ -38,9 +43,30 @@ public class DstaServiceImpl implements DstaService {
         // 파일 복사
         Files.copy(thumbnailFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-        // 파일 경로 반환
-        return uploadDir + "/" + fileName;
+        // 파일 이름 반환
+        return fileName;
     }
+
+    // 이미지 파일을 로드하는 메서드 추가
+    @Override
+    public Resource loadImageAsResourceInternal(String fileName)  {
+        try {
+            String uploadDir = "src/main/resources/static/images"; // 실제 서버에 저장한 디렉토리 경로
+            Path filePath = Paths.get(uploadDir).resolve(fileName).normalize();
+            Resource resource = new UrlResource(filePath.toUri());
+
+            if (resource.exists()) {
+                return resource;
+            } else {
+                throw new FileNotFoundException("File not found: " + fileName);
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Malformed URL for file: " + fileName, e);
+        } catch (Exception e) {
+            throw new RuntimeException("Error loading file: " + fileName, e);
+        }
+    }
+
 
     @Override
     public List<DstaDTO> dstaList(Integer dstarNo) {
@@ -50,9 +76,9 @@ public class DstaServiceImpl implements DstaService {
     @Override
     public void insertDsta(DstaDTO dstaDTO, MultipartFile thumbnailFile) {
         try {
-            // 썸네일 파일을 서버에 저장하고 파일 경로 설정
-            String thumbnailFilePath = saveThumbnail(thumbnailFile);
-            dstaDTO.setDstarThumbnail(thumbnailFilePath);
+            // 썸네일 파일을 서버에 저장하고 파일 이름 설정
+            String fileName = saveThumbnail(thumbnailFile);
+            dstaDTO.setDstarThumbnail(fileName); // 데이터베이스에는 파일 이름만 저장
 
             // 데이터베이스에 저장
             dao.insertDsta(dstaDTO);

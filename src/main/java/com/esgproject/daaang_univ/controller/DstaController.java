@@ -3,6 +3,8 @@ package com.esgproject.daaang_univ.controller;
 import com.esgproject.daaang_univ.dto.DstaDTO;
 import com.esgproject.daaang_univ.service.DstaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,18 @@ public class DstaController {
         List<DstaDTO> dstaList = service.dstaList(dstarNo);
         return new ResponseEntity<>(dstaList, HttpStatus.OK);
     }
+
+    // 이미지 제공을 위한 엔드포인트 추가
+    @GetMapping("/images/{fileName:.+}")
+    public ResponseEntity<Resource> serveImage(@PathVariable String fileName) {
+        Resource file = service.loadImageAsResourceInternal(fileName);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + file.getFilename() + "\"")
+                .body(file);
+    }
+
+
+
     // dstarNo로 선택 작업을 위한 코드 추가
     @GetMapping("/getDstaByDstarNo/{dstarNo}")
     public ResponseEntity<DstaDTO> getDstaByDstarNo(@PathVariable int dstarNo) {
