@@ -94,8 +94,24 @@ public class DstaServiceImpl implements DstaService {
     }
 
     @Override
-    public void updateDsta(DstaDTO dstaDTO) {
-        dao.updateDsta(dstaDTO);
+            public void updateDsta(DstaDTO dstaDTO, MultipartFile thumbnailFile) {
+        try {
+            // 썸네일 파일이 변경되었을 때만 처리
+            if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
+                // 새로운 썸네일 파일 이름으로 설정
+                String fileName = saveThumbnail(thumbnailFile);
+                dstaDTO.setDstarThumbnail(fileName); // 데이터베이스에는 파일 이름만 저장
+            } else {
+                // thumbnailFile이 null이거나 비어있으면 기존 데이터베이스에 있는 값을 사용
+                DstaDTO existingDsta = dao.getDstaByDstarNo(dstaDTO.getDstarNo());
+                dstaDTO.setDstarThumbnail(existingDsta.getDstarThumbnail());
+            }
+            // 데이터베이스에 저장
+            dao.updateDsta(dstaDTO);
+        } catch (Exception e) {
+            // 예외 처리 로직 추가
+            e.printStackTrace();
+        }
     }
     @Override
     public void deleteDsta(int dstarNo) {

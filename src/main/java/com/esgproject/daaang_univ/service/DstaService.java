@@ -13,7 +13,7 @@ public interface DstaService {
 
     DstaDTO getDstaByDstarNo(int dstarNo);
 
-    void updateDsta(DstaDTO dstaDTO);
+    void updateDsta(DstaDTO dstaDTO, MultipartFile thumbnailFile);
 
     void deleteDsta(int dstarNo);
 

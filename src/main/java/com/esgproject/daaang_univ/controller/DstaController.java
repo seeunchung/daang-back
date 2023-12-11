@@ -53,9 +53,10 @@ public class DstaController {
 
     // 댕스타 수정을 위한 코드 추가
     @PutMapping("/dstarEdit")
-    public ResponseEntity<Void> updateDsta(@RequestBody DstaDTO dstaDTO) {
-        service.updateDsta(dstaDTO);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Void> updateDsta(@ModelAttribute DstaDTO dstaDTO,
+                                           @RequestParam(value = "thumbnailFile", required = false) MultipartFile thumbnailFile) {
+        service.updateDsta(dstaDTO, thumbnailFile);
+        return ResponseEntity.ok().build();
     }
 
     // 댕스타 삭제를 위한 코드 추가
