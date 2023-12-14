@@ -8,6 +8,10 @@ spring:
     encoding:
       force: true
       charset: UTF-8
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
   devtools:
     livereload:
@@ -31,6 +35,3 @@ server:
   servlet:
     encoding:
       force-response: true
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB

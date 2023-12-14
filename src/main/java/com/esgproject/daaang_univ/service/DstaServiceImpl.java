@@ -66,7 +66,20 @@ public class DstaServiceImpl implements DstaService {
             throw new RuntimeException("Error loading file: " + fileName, e);
         }
     }
+    // 썸네일 파일을 서버에서 삭제하는 메서드
+    private void deleteThumbnail(String fileName) {
+        try {
+            String uploadDir = "src/main/resources/static/images"; // 실제 서버에 저장한 디렉토리 경로
 
+            Path filePath = Paths.get(uploadDir).resolve(fileName).normalize();
+            // 파일 삭제
+            Files.deleteIfExists(filePath);
+
+        } catch (Exception e) {
+            // 예외 처리 로직 추가
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public List<DstaDTO> dstaList(Integer dstarNo) {
@@ -98,6 +111,9 @@ public class DstaServiceImpl implements DstaService {
         try {
             // 썸네일 파일이 변경되었을 때만 처리
             if (thumbnailFile != null && !thumbnailFile.isEmpty()) {
+                // 기존 썸네일 파일 삭제
+                DstaDTO existingDsta = dao.getDstaByDstarNo(dstaDTO.getDstarNo());
+                deleteThumbnail(existingDsta.getDstarThumbnail());
                 // 새로운 썸네일 파일 이름으로 설정
                 String fileName = saveThumbnail(thumbnailFile);
                 dstaDTO.setDstarThumbnail(fileName); // 데이터베이스에는 파일 이름만 저장
@@ -115,6 +131,19 @@ public class DstaServiceImpl implements DstaService {
     }
     @Override
     public void deleteDsta(int dstarNo) {
-        dao.deleteDsta(dstarNo);
+        try {
+            // 기존 DTO를 가져와서 썸네일 파일 이름을 얻기
+            DstaDTO existingDsta = dao.getDstaByDstarNo(dstarNo);
+
+            // 썸네일 파일을 삭제
+            deleteThumbnail(existingDsta.getDstarThumbnail());
+
+            // 데이터베이스에서 DTO를 삭제
+            dao.deleteDsta(dstarNo);
+        } catch (Exception e) {
+            // 예외 처리 로직 추가
+            e.printStackTrace();
+        }
     }
+
 }
