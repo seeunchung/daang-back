@@ -21,6 +21,7 @@ public class SecurityConfig {
                     .authorizeHttpRequests(requests -> requests
                             .requestMatchers("/dmunity/dmunityMainPage").permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/login/**")).permitAll()
+                            .requestMatchers("/join/**").permitAll()
                             .anyRequest().authenticated()
                     )
                     .csrf(AbstractHttpConfigurer::disable);
